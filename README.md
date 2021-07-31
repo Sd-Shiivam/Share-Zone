@@ -21,6 +21,8 @@
 - [2] Responsive web framework design
 - [3] Simple Easy to handle UI.
 - [4] Easy and quick upload.
+- [5] Multi file type support
+
 
 
 
