@@ -7,7 +7,7 @@
 </p>
 
   ```
-  Quick and Easy way to share.
+  Quick and Easy way to share.Upload and download on any device anywhere.
   ```
 
 > Github - https://github.com/Sd-Shivam/Share-Zone
