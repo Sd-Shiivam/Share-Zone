@@ -54,5 +54,5 @@ home page                  |  uploaded list page
    
 
 ## [😍] Contributing
-This project welcomes contributions of all types. Help  design, documentation, finding bugs are ways everyone can help on top of coding features / bug fixes. We are excited to work with the power user community to build a set of tools for helping you get a best plateform for quick share.
+This project welcomes contributions. Join and make is more useful and better.
  
