@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+
 {% load static %} 
 <head>
-	<meta charset="UTF-8">
-	<link rel="shortcut icon" href="{% static 'logo.png' %}" type="image/x-icon">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Share-Zone</title>
+<link rel="shortcut icon" href="{% static 'logo.png' %}" type="image/x-icon">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Share-Zone</title>
 <link rel="stylesheet" href="{% static 'main.css' %}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
 <body style="background: url('/static/background.png');" >
 	<div id="msgbox" class="msg">hello sample msg</div>
-     <img src="{% static 'logo.png' %}" alt="Share-Zone" class="logo">
+  <img src="{% static 'logo.png' %}" alt="Share-Zone" class="logo">
 
 {% block body%}
 {% endblock %}
