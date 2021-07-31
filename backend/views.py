@@ -5,7 +5,8 @@ from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 # Create your views here.
 def index(request):
-    return render(request,'home.html',{'uploadedfiles':reversed(files.objects.all())})
+    s=reversed(files.objects.all())
+    return render(request,'home.html')
 
 def upload(request):
   if request.method == 'POST' and request.FILES['fileInput']:
