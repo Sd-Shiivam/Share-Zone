@@ -5,10 +5,7 @@ from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 # Create your views here.
 def index(request):
-    parm={
-      'uploaded_files':reversed(files.objects.all()),
-    }
-    return render(request,'home.html',parm)
+    return render(request,'home.html',{'uploaded_files':reversed(files.objects.all())})
 
 def upload(request):
   if request.method == 'POST' and request.FILES['fileInput']:
@@ -25,7 +22,4 @@ def delet(request,idf):
   return redirect('home')
 
 def viewfiles(request):
-    parm={
-      'uploaded_files':reversed(files.objects.all()),
-    }
-    return render(request,'viewfiels.html',parm)
+    return render(request,'viewfiels.html',{'uploaded_files':reversed(files.objects.all())})
