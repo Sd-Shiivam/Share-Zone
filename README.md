@@ -37,12 +37,6 @@
 [![Product Name Screen Shot](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/m1.png.jpg?raw=true)
 
 
-### [🎗] Challenges I ran into
-
-Actually if i really say then i am not run with any problem because i love to tackle the problems. 
-And currently i am solving my two problem first learning Machine learning which i totally didn't learn. 
-and second one ,learning to work with agora.ai and cockrochdb in ,my django project. 
-how to host cockroachdb and all that kind of stuf.I am trying to make it totaly automatic with python
 
 
 ### [🔬] Installation
