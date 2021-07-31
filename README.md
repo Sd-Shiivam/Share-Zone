@@ -33,8 +33,8 @@
 
 ### [✔] Smartphone view
 
-[![Product Name Screen Shot](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/m2.png.jpg?raw=true |width=100)
-[![Product Name Screen Shot](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/m1.png.jpg?raw=true |width=100)
+[![Product Name Screen Shot](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/m2.png.jpg?raw=true | width=100)
+[![Product Name Screen Shot](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/m1.png.jpg?raw=true | width=100)
 
 
 
