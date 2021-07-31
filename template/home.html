@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<section class="upload-container">
+	<form action="upload/" method="POST" id="formsend" enctype="multipart/form-data">
+		<div class="drop-zone">{% csrf_token %}
+			<div class="icon-container"> <img src="{% static 'upload.jpg' %}" draggable="false" class="center" alt="File Icon"></div>
+			<input type="file" name="fileInput" id="fileInput">
+			<div class="title"> <span id="droptext" > Drop your Files here or,</span> <span id="browseBtn">browse</span></div> 
+			<div class="viewupload"><a href="{% url 'viewall' %}" style="all: unset;" >View-Uploaded-Files</a> </a></div>
+		</div> <button type="submit" id="uploadfilebtn" style="display: none;"></button>
+	</form>
+</section>
+<section class="fileshow" >
+	{% for fil in uploaded_files%}
+	<div class="download-container">  <div class='leftdiv'> <span>{{fil.id}}</span> . {{fil.name}} | 
+		<!-- <span> <a href="delete/{{fil.id}}"> delete</a></span> -->
+	</div> 
+	<div class="rightdiv"> <a href="{{fil.file.url}}" download >
+		<img src="{% static 'download.gif' %}" width="25px" alt="Download now"></a></div></div>
+	{% endfor %}
+</section>
+<script>
+	if(window.innerWidth <= 991){
+  console.log('smartphone');
+  document.getElementsByClassName('fileshow')[0].style.display='none';
+}
+else{
+  console.log('desktop');
+};
+</script>
+{% endblock %}

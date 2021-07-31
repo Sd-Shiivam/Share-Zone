@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<section class="fileshow" style="display: block;" >
+    {% for fil in uploaded_files%}
+    <div class="download-container">  <div class='leftdiv'> <span>{{fil.id}}</span> . {{fil.name}} | 
+        <!-- <span> <a href="delete/{{fil.id}}"> delete</a></span> -->
+    </div> 
+    <div class="rightdiv"> <a href="{{fil.file.url}}" download >
+        <img src="{% static 'download.gif' %}" width="25px" alt="Download now"></a></div></div>
+    {% endfor %}
+</section>
+<script>
+	if(window.innerWidth <= 991){
+  console.log('smartphone');
+}
+else{
+  console.log('desktop');
+  document.getElementsByClassName('fileshow')[0].style.display='none';
+  window.location.href="{% url 'home' %}";
+};
+</script>
+{% endblock %}
