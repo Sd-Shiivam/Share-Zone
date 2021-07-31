@@ -32,9 +32,7 @@
 [![Product Name Screen Shot](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/front.jpeg?raw=true)
 
 ### [✔] Smartphone view
-
-[![Product Name Screen Shot](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/m2.png.jpg?raw=true | width=100)
-[![Product Name Screen Shot](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/m1.png.jpg?raw=true | width=100)
+<img src="https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/m2.png.jpg?raw=true" width="200" height="400" />
 <img src="https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/m1.png.jpg?raw=true" width="200" height="400" />
 
 
