@@ -32,9 +32,9 @@
 [![Product Name Screen Shot](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/front.jpeg?raw=true)
 
 ### [✔] Smartphone view
-<img src="https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/m2.png.jpg?raw=true" width="200" height="400" />
-<img src="https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/m1.png.jpg?raw=true" width="200" height="400" />
-
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+![](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/m2.png.jpg?raw=true)  |  ![](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/m1.png.jpg?raw=true)
 
 ### [🔬] Installation
 1. Clone the repo
