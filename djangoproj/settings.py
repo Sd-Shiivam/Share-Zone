@@ -28,6 +28,7 @@ SECRET_KEY = '84gvxwpw6=te^ubkgc05%6&5i9@#6^xc)l4bk68l@era8k+**0'
 DEBUG = True
 
 ALLOWED_HOSTS = ['sd-share-zone.herokuapp.com']
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -126,4 +127,4 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())

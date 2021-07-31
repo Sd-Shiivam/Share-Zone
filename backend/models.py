@@ -8,6 +8,3 @@ class files(models.Model):
     file=models.FileField(upload_to='')
     def __str__(self):
         return self.name
-    def delete(self,using=None, keep_parents=False):
-        self.file.delete(self.file.name)
-        super().delete()
