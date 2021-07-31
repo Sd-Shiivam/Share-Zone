@@ -16,7 +16,7 @@
 	<div class="download-container">  <div class='leftdiv'> <span>{{fil.id}}</span> . {{fil.name}} | 
 		<!-- <span> <a href="delete/{{fil.id}}"> delete</a></span> -->
 	</div> 
-	<div class="rightdiv"> <a href="media/file/{{fil.name}}" download >
+	<div class="rightdiv"> <a href="{{fil.file.url}}" download >
 		<img src="{% static 'download.gif' %}" width="25px" alt="Download now"></a></div></div>
 	{% endfor %}
 </section>
