@@ -1,11 +1,12 @@
 from django import http
 from django.shortcuts import redirect, render
-from .models import *
+from .models import files
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 # Create your views here.
 def index(request):
-    return render(request,'home.html',{'uploadedfiles':reversed(files.objects.all())})
+#     s=reversed(files.objects.all())
+    return render(request,'home.html')
 
 def upload(request):
   if request.method == 'POST' and request.FILES['fileInput']:
@@ -22,4 +23,5 @@ def delet(request,idf):
   return redirect('home')
 
 def viewfiles(request):
-    return render(request,'viewfiels.html',{'uploadedfiles':reversed(files.objects.all())})
+#     s=reversed(files.objects.all())
+    return render(request,'viewfiels.html')
