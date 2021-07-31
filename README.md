@@ -32,7 +32,7 @@
 [![Product Name Screen Shot](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/front.jpeg?raw=true)
 
 ### [✔] Smartphone view
-Solarized dark             |  Solarized Ocean
+home page                  |  uploaded list page
 :-------------------------:|:-------------------------:
 ![](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/m2.png.jpg?raw=true)  |  ![](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/m1.png.jpg?raw=true)
 
