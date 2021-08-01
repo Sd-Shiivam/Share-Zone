@@ -28,7 +28,7 @@ def upload(request):
   return HttpResponse('some error')
 
 def delet(request,idf):
-  if files.objects.filter(id=idf)[0].name=='help..txt':
+  if files.objects.filter(id=idf)[0].name=='help.txt':
     messages.success(request, 'Soory can delete this file')
     return redirect('home')
   else:
@@ -54,7 +54,9 @@ def singleview(request,idf):
   # print(files.objects.filter(id=idf)[0].file.url)
   if dbfil_ex in textfiles:
     fltype='txt'
-    data=(files.objects.filter(id=idf)[0].file).readlines()
+    data1=(files.objects.get(id=idf).file.path)
+    s=open(data1,'r')
+    data=s.read()
   elif dbfil_ex in images:
     fltype='img'
     data=(files.objects.filter(id=idf)[0].file.url)
