@@ -9,7 +9,7 @@ browseBtn.addEventListener('click',function(){
 });
 
 fileInput.addEventListener('change',function(){
-  document.getElementById('uploadfilebtn').click();;
+  document.getElementById('uploadfilebtn').click();
 });
 dropZone.addEventListener("drop", function(e){
   e.preventDefault();
@@ -50,3 +50,6 @@ function showmsg(txt){
   msgdiv.classList.add('show');
   setTimeout(function(){msgdiv.classList.remove('show')},5000);
 };
+
+
+setTimeout(function(){document.getElementsByClassName('msg')[0].classList.remove('show')},5000)

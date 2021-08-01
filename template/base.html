@@ -1,14 +1,21 @@
 
 {% load static %} 
 <head>
-<link rel="shortcut icon" href="{% static 'logo.png' %}" type="image/x-icon">
+<link rel="shortcut icon" href="{% static 'logo1.png' %}" type="image/x-icon">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Share-Zone</title>
 <link rel="stylesheet" href="{% static 'main.css' %}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <body style="background: url('/static/background.png');" >
+  {% if messages %}
+  {% for message in messages %}
+	<div id="msgbox1" class="msg show">{{ message }} </div>
+  {% endfor %}
+  {% endif %}
 	<div id="msgbox" class="msg">hello sample msg</div>
-  <img src="{% static 'logo.png' %}" alt="Share-Zone" class="logo">
+  <a href="{% url 'home' %}">
+    <img src="{% static 'logo.png' %}" alt="Share-Zone" class="logo">
+  </a>
 
 {% block body%}
 {% endblock %}

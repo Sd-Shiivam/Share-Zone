@@ -13,11 +13,18 @@
 </section>
 <section class="fileshow" >
 	{% for fil in uploadedfiles%}
-	<div class="download-container">  <div class='leftdiv'> <span>{{fil.id}}</span> . {{fil.name}} | 
-		<!-- <span> <a href="delete/{{fil.id}}"> delete</a></span> -->
+	<div class="download-container">  <div class='leftdiv point'> <span>{{fil.id}}</span> . {{fil.name}} | 
+		<span  > <a href="/delete/{{fil.id}}" style='all: unset;color: red;'> delete</a></span>
 	</div> 
-	<div class="rightdiv"> <a href="{{fil.file.url}}" download >
-		<img src="{% static 'download.gif' %}" width="25px" alt="Download now"></a></div></div>
+	<div class="rightdiv">
+		<a href="{{fil.file.url}}" download >
+			<img src="{% static 'download.gif' %}" width="25px" alt="Download now"></a>
+		</div>
+	<div class="rightdiv">
+	<a href="/view/{{fil.id}}">
+		<img src="{% static 'view.png' %}" width="30px" style="margin-left: 3px;" alt="view now"></a>
+	</div>
+</div>
 	{% endfor %}
 </section>
 <script>
