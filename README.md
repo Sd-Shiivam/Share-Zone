@@ -3,7 +3,7 @@
 <p align="center">
   <img src="https://github.com/Sd-Shivam/Share-Zone/blob/main/backend/static/logo.png?raw=true" alt="STA" width="240" />
 
-  <p align="center">💖 Share-Zone 💖 </p> ![](https://shiva0001.pythonanywhere.com/like/)
+  <p align="center">💖 Share-Zone 💖 </p>
 </p>
 
   ```
