@@ -49,7 +49,7 @@ video player                 |  audio player
 ### [🔬] Installation
 1. Clone the repo
    ```sh
-   git clone https://github.com/Sd-Shivam/hack_the_mountain.git
+   git clone https://github.com/Sd-Shivam/Share-Zone.git
    ```
 2. Install Django
    ```sh
