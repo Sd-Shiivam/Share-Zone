@@ -43,6 +43,7 @@ const uploadFile = () => {
   var formData = new FormData();
   formData.append('filesend',files[0])
   document.getElementById('uploadfilebtn').click();
+  showmsg('Please wait while uploading...')
 };
 
 function showmsg(txt){
@@ -53,4 +54,3 @@ function showmsg(txt){
 
 
 setTimeout(function(){document.getElementsByClassName('msg')[0].classList.remove('show')},5000);
-

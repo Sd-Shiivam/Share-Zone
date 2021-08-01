@@ -6,7 +6,7 @@
 <title>Share-Zone</title>
 <link rel="stylesheet" href="{% static 'main.css' %}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<body style="background: url('/static/background.png');" >
+<body style="background: url('/static/background.png');"  >
   {% if messages %}
   {% for message in messages %}
 	<div id="msgbox1" class="msg show">{{ message }} </div>
@@ -16,25 +16,8 @@
   <a href="{% url 'home' %}">
     <img src="{% static 'logo.png' %}" alt="Share-Zone" class="logo">
   </a>
-
 {% block body%}
 {% endblock %}
-<style>
-  .float{
-	position:fixed;
-	width:60px;
-	height:60px;
-	bottom:40px;
-	right:40px;
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-}
-
-.my-float{
-	margin-top:22px;
-}
-</style>
 <a onclick="likes()" class="float">
   <img src="{% static 'heart.gif' %}" alt="heart" width="70%"> <span id="likno" style="color: darkred;font-weight: bold;" >{{likes}}</span> 
   </a>
@@ -57,11 +40,13 @@
 </body>
 <script>
   function likes(){
+  let name=prompt('Pleasue Enter your name!![for like]')
   $.ajax({
     type: 'POST',
-    url: "",
+    url: "{% url 'home' %}",
     data: {
       csrfmiddlewaretoken: '{{ csrf_token }}',
+      'name':name,
     },
     success: function() {
       var s = document.getElementById('likno').innerText;

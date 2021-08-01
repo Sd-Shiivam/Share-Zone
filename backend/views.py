@@ -1,12 +1,15 @@
 from django import http
 from django.shortcuts import redirect, render
 from .models import *
+import time
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 from django.http import HttpResponse
 # Create your views here.
 def index(request):
   if request.method == 'POST':
+    name=request.POST.get('name')
+    likeuser(name=name).save()
     likeno=int(like.objects.filter(id=1)[0].likeno)+1
     like(id='1',likeno=likeno).save()
   s=reversed(files.objects.all())

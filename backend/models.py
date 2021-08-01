@@ -14,3 +14,8 @@ class like(models.Model):
     likeno=models.CharField(default='0',max_length=10000)
     def __str__(self):
         return self.likeno
+class likeuser(models.Model):
+    like_on = models.DateTimeField(default=datetime.now())
+    name=models.CharField(max_length=1000)
+    def __str__(self):
+        return self.name
