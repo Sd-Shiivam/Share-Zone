@@ -23,7 +23,10 @@
 - [2] Responsive web framework design
 - [3] Simple Easy to handle UI.
 - [4] Easy and quick upload.
-- [5] Multi file type support
+- [5] Multi file type support.
+- [6] Audio file player.
+- [7] image file viewer
+- [8] video file player
 
 
 
@@ -33,10 +36,15 @@
 ### [✔] Home page Pic
 [![Product Name Screen Shot](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/front.jpeg?raw=true)
 
+
 ### [✔] Smartphone view
-home page                  |  uploaded list page
+home page                  |  uploaded list page       
 :-------------------------:|:-------------------------:
 ![](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/m2.png.jpg?raw=true)  |  ![](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/m1.png.jpg?raw=true)
+
+video player                 |  audio player      
+:-------------------------:|:-------------------------:
+![](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/mvideo.png?raw=true)  |  ![](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/mmusic.jpeg?raw=true)
 
 ### [🔬] Installation
 1. Clone the repo
