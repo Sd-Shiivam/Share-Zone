@@ -34,7 +34,7 @@
 ## [👓]  Desktop View
 
 ### [✔] Home page Pic
-[![Product Name Screen Shot](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/front.jpeg?raw=true)
+[![Product Name Screen Shot](https://github.com/Sd-Shivam/Share-Zone/blob/main/staticfiles/fronthome.jpeg?raw=true)
 
 
 ### [✔] Smartphone view
