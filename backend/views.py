@@ -8,8 +8,9 @@ from django.http import HttpResponse
 # Create your views here.
 def index(request):
   if request.method == 'POST':
-    name=request.POST.get('name')
-    likeuser(name=name).save()
+    if request.POST.get('name'):
+        name=request.POST.get('name')
+        likeuser(name=name).save()
     likeno=int(like.objects.filter(id=1)[0].likeno)+1
     like(id='1',likeno=likeno).save()
   s=reversed(files.objects.all())

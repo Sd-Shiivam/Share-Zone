@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import django_heroku
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,7 +27,7 @@ SECRET_KEY = '84gvxwpw6=te^ubkgc05%6&5i9@#6^xc)l4bk68l@era8k+**0'
 DEBUG = True
 
 # ALLOWED_HOSTS = ['sd-share-zone.herokuapp.com','localhost']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['shiva0001.pythonanywhere.com']
 
 
 # Application definition
@@ -45,7 +44,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -59,7 +57,7 @@ ROOT_URLCONF = 'djangoproj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['template'],
+        'DIRS': [os.path.join(BASE_DIR, 'template'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,4 +123,3 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
-django_heroku.settings(locals())
