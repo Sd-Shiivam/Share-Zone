@@ -28,9 +28,13 @@ def upload(request):
   return HttpResponse('some error')
 
 def delet(request,idf):
-  files.objects.filter(id=idf).delete()
-  messages.success(request, 'Your file deleted successfully')
-  return redirect('home')
+  if files.objects.filter(id=idf)[0].name=='help..txt':
+    messages.success(request, 'Soory can delete this file')
+    return redirect('home')
+  else:
+    files.objects.filter(id=idf).delete()
+    messages.success(request, 'Your file deleted successfully')
+    return redirect('home')
 
 def viewfiles(request):
     s=reversed(files.objects.all())
