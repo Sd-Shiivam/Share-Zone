@@ -1,7 +1,7 @@
 from django import http
 from django.shortcuts import redirect, render
 from .models import *
-import time
+import os
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 from django.http import HttpResponse
@@ -32,6 +32,7 @@ def delet(request,idf):
     messages.success(request, 'Soory can delete this file')
     return redirect('home')
   else:
+    os.remove(files.objects.get(id=idf).file.path)
     files.objects.filter(id=idf).delete()
     messages.success(request, 'Your file deleted successfully')
     return redirect('home')

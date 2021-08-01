@@ -26,8 +26,8 @@ SECRET_KEY = '84gvxwpw6=te^ubkgc05%6&5i9@#6^xc)l4bk68l@era8k+**0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['sd-share-zone.herokuapp.com','localhost']
 ALLOWED_HOSTS = ['shiva0001.pythonanywhere.com']
+# ALLOWED_HOSTS = []
 
 
 # Application definition
