@@ -4,3 +4,4 @@ from .models import *
 
 admin.site.site_header ='File-Share-Zone'
 admin.site.register(files)
+admin.site.register(like)

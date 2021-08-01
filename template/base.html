@@ -19,6 +19,25 @@
 
 {% block body%}
 {% endblock %}
+<style>
+  .float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+}
+
+.my-float{
+	margin-top:22px;
+}
+</style>
+<a onclick="likes()" class="float">
+  <img src="{% static 'heart.gif' %}" alt="heart" width="70%"> <span id="likno" style="color: darkred;font-weight: bold;" >{{likes}}</span> 
+  </a>
 <!-- github fork button -->
 <a href="https://github.com/Sd-Shivam/Share-Zone" class="github-corner"
     aria-label="View source on GitHub">
@@ -36,5 +55,20 @@
     </svg>
 </a>
 </body>
+<script>
+  function likes(){
+  $.ajax({
+    type: 'POST',
+    url: "",
+    data: {
+      csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    success: function() {
+      var s = document.getElementById('likno').innerText;
+      document.getElementById('likno').innerText = Number(s) + 1;
+    },
+  });
+};
+</script>
 <script src="{% static 'main.js' %}"></script>
 </html>

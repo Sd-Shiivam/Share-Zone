@@ -24,5 +24,6 @@ urlpatterns = [
     path('upload/', upload,name='upload'),
     path('delete/<int:idf>', delet,name='delete'),
     path('view/<int:idf>', singleview,name='view'),
-    path('uploadfiles/',viewfiles,name='viewall')
+    path('uploadfiles/',viewfiles,name='viewall'),
+    path('like/',likes,name='like')
 ]

@@ -52,4 +52,5 @@ function showmsg(txt){
 };
 
 
-setTimeout(function(){document.getElementsByClassName('msg')[0].classList.remove('show')},5000)
+setTimeout(function(){document.getElementsByClassName('msg')[0].classList.remove('show')},5000);
+

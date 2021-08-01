@@ -6,8 +6,11 @@ from django.contrib import messages
 from django.http import HttpResponse
 # Create your views here.
 def index(request):
-    s=reversed(files.objects.all())
-    return render(request,'home.html',{'uploadedfiles':s})
+  if request.method == 'POST':
+    likeno=int(like.objects.filter(id=1)[0].likeno)+1
+    like(id='1',likeno=likeno).save()
+  s=reversed(files.objects.all())
+  return render(request,'home.html',{'uploadedfiles':s,'likes':like.objects.filter(id=1)[0].likeno})
 
 def upload(request):
   if request.method == 'POST' and request.FILES['fileInput']:
@@ -27,7 +30,7 @@ def delet(request,idf):
 
 def viewfiles(request):
     s=reversed(files.objects.all())
-    return render(request,'viewfiels.html',{'uploadedfiles':s})
+    return render(request,'viewfiels.html',{'uploadedfiles':s,'likes':like.objects.filter(id=1)[0].likeno})
 
 
 def singleview(request,idf):
@@ -61,6 +64,9 @@ def singleview(request,idf):
   parm={
     'filename':name,
     'type':fltype,
-    'data':data
+    'data':data,
+    'likes':like.objects.filter(id=1)[0].likeno
   }
   return render(request,'singleview.html',parm)
+def likes(request):
+  return HttpResponse(like.objects.filter(id=1)[0].likeno)

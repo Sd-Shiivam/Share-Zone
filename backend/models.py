@@ -8,3 +8,9 @@ class files(models.Model):
     file=models.FileField(upload_to='')
     def __str__(self):
         return self.name
+
+class like(models.Model):
+    ids=models.CharField(default='1',max_length=1)
+    likeno=models.CharField(default='0',max_length=10000)
+    def __str__(self):
+        return self.likeno
