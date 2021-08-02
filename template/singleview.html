@@ -1,11 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
+{% if type == 'txt' %}
+<style>
+	.databody{
+		justify-content: left;
+	}
+</style>
+{% endif %}
 <section class="upload-container datacont" >
 <span id="flname" > <b>FileName:- </b> {{filename}}</span>
 <div class='databody'>
 {% if type == 'txt' %}
-<span>{{data}}</span>
+<ol>
+{% for lin in data %}
+<li>{{lin}}</li>
+{% endfor %}
+</ol>
 {% elif type == 'img' %}
 <img src="{{data}}" width="150px" height="150px" alt="{{filename}}">
 {% elif type == 'music' %}
@@ -13,6 +24,22 @@
 <audio src="{{data}}" id="audiomain" style="display: none;"  controls></audio>
 <a class="play-btn" onclick="play()" id='play1'></a>
 <a onclick="pause()" class="play-btn" id='play2' style="display: none;" ></a>
+<script>
+	function play(){
+		var duration=(document.getElementById('audiomain').duration)/60;
+		document.getElementById('audiomain').play();
+		document.getElementById('play1').style.display='none';
+		document.getElementById('play2').style.display='block';
+		document.getElementById('detl').innerText='Playing the Song🎵🎶 ['+String(Math.round(duration))+' min]';
+	};
+	function pause(){
+		var duration=(document.getElementById('audiomain').duration)/60;
+		document.getElementById('audiomain').pause();
+		document.getElementById('play2').style.display='none';
+		document.getElementById('play1').style.display='block';
+		document.getElementById('detl').innerText='Paused the Song⏸['+String(Math.round(duration))+' min]';
+	};
+</script>
 {% elif type == 'video' %}
 <link type="text/css" href="{% static 'player.css' %}" rel="stylesheet" />
 <!-- Video Player Container -->
@@ -167,20 +194,4 @@ no data
 {% endif %}
 </div>
 </section>
-<script>
-	function play(){
-		var duration=(document.getElementById('audiomain').duration)/60;
-		document.getElementById('audiomain').play();
-		document.getElementById('play1').style.display='none';
-		document.getElementById('play2').style.display='block';
-		document.getElementById('detl').innerText='Playing the Song🎵🎶 ['+String(Math.round(duration))+' min]';
-	};
-	function pause(){
-		var duration=(document.getElementById('audiomain').duration)/60;
-		document.getElementById('audiomain').pause();
-		document.getElementById('play2').style.display='none';
-		document.getElementById('play1').style.display='block';
-		document.getElementById('detl').innerText='Paused the Song⏸['+String(Math.round(duration))+' min]';
-	};
-</script>
 {% endblock %}

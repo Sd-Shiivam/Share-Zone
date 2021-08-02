@@ -5,6 +5,12 @@ import os
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 from django.http import HttpResponse
+
+notlist=['@',' ','#', '$', '%', '^', '!', '&', '*', '(', ')', '_', '+', '=', '{', '}', '[', ']', ';', ':', '"', "'", '<', '>', ',', '?', '/', '\\', '~', '`']
+textfiles=['txt','sh','text','py','html','css','scss','js','bash','xml','bat']
+images=['jpg','png','gif','ico','jpeg']
+audio=['mp3','wav','wma',]
+video=['mp4']
 # Create your views here.
 def index(request):
   if request.method == 'POST':
@@ -20,9 +26,16 @@ def upload(request):
   if request.method == 'POST' and request.FILES['fileInput']:
     fileObj=request.FILES['fileInput']
     fs=FileSystemStorage()
-    filePathName=fs.save(fileObj.name,fileObj)
+    filename=''
+    for let in fileObj.name:
+      if let in notlist:
+        let='-'
+      else:
+        pass
+      filename=str(filename) + str(let)
+    filePathName=fs.save(filename,fileObj)
     filePathName=fs.url(filePathName)
-    files(name=fileObj.name,file=filePathName[7:]).save()
+    files(name=filename,file=filePathName[7:]).save()
     messages.success(request, 'Your file uploaded successfully')
     return redirect('home')
   return HttpResponse('some error')
@@ -32,7 +45,10 @@ def delet(request,idf):
     messages.success(request, 'Soory can delete this file')
     return redirect('home')
   else:
-    os.remove(files.objects.get(id=idf).file.path)
+    try:
+      os.remove(files.objects.get(id=idf).file.path)
+    except:
+      pass
     files.objects.filter(id=idf).delete()
     messages.success(request, 'Your file deleted successfully')
     return redirect('home')
@@ -43,20 +59,19 @@ def viewfiles(request):
 
 
 def singleview(request,idf):
-  textfiles=['txt','sh','text','py','html','css','scss','js','bash','xml','bat']
-  images=['jpg','png','gif','ico','jpeg']
-  audio=['mp3','wav','wma',]
-  video=['mp4']
   fltype='no'
   data=''
   file=files.objects.filter(id=idf)
   dbfil_ex=str(file[0]).split('.')[-1].lower()
-  # print(files.objects.filter(id=idf)[0].file.url)
+  if len(str(file[0])) > 15:
+    name=str(file[0])[0:30]+'...'
+  else:
+    name=file[0]
   if dbfil_ex in textfiles:
     fltype='txt'
     data1=(files.objects.get(id=idf).file.path)
     s=open(data1,'r')
-    data=s.read()
+    data=s.readlines()
   elif dbfil_ex in images:
     fltype='img'
     data=(files.objects.filter(id=idf)[0].file.url)
@@ -66,12 +81,18 @@ def singleview(request,idf):
   elif dbfil_ex in video:
     fltype='video'
     data=(files.objects.filter(id=idf)[0].file.url)
+  elif dbfil_ex == 'pdf':
+    fltype='pdf'
+    data=(files.objects.filter(id=idf)[0].file.url)
+    parm={
+    'filename':name,
+    'type':fltype,
+    'data':data,
+    'likes':like.objects.filter(id=1)[0].likeno
+    }
+    return render(request,'pdfview.html',parm)
   else:
     pass
-  if len(str(file[0])) > 15:
-    name=str(file[0])[0:30]+'...'
-  else:
-    name=file[0]
   parm={
     'filename':name,
     'type':fltype,

@@ -19,7 +19,8 @@ body {
     position: absolute;
     top: -19px;
     left: 10px;
-    width: 135px
+    width: 135px;
+    z-index: 1;
 }
 
 
@@ -43,6 +44,7 @@ body,
     height: 85%;
     display: flex;
     justify-content: center;
+    overflow: auto;
 }
 
 .leftdiv{
