@@ -16,11 +16,11 @@ def index(request):
   if request.method == 'POST':
     if request.POST.get('name'):
         name=request.POST.get('name')
-        likeuser(name=name).save()
-    likeno=int(like.objects.filter(id=1)[0].likeno)+1
-    like(id='1',likeno=likeno).save()
+        like(name=name).save()
+    else:
+      like().save()
   s=reversed(files.objects.all())
-  return render(request,'home.html',{'uploadedfiles':s,'likes':like.objects.filter(id=1)[0].likeno})
+  return render(request,'home.html',{'uploadedfiles':s,'likes':len(like.objects.all())})
 
 def upload(request):
   if request.method == 'POST' and request.FILES['fileInput']:
@@ -55,7 +55,7 @@ def delet(request,idf):
 
 def viewfiles(request):
     s=reversed(files.objects.all())
-    return render(request,'viewfiels.html',{'uploadedfiles':s,'likes':like.objects.filter(id=1)[0].likeno})
+    return render(request,'viewfiels.html',{'uploadedfiles':s,'likes':len(like.objects.all())})
 
 
 def singleview(request,idf):
@@ -88,7 +88,7 @@ def singleview(request,idf):
     'filename':name,
     'type':fltype,
     'data':data,
-    'likes':like.objects.filter(id=1)[0].likeno
+    'likes':len(like.objects.all())
     }
     return render(request,'pdfview.html',parm)
   else:
@@ -97,8 +97,8 @@ def singleview(request,idf):
     'filename':name,
     'type':fltype,
     'data':data,
-    'likes':like.objects.filter(id=1)[0].likeno
+    'likes':len(like.objects.all())
   }
   return render(request,'singleview.html',parm)
 def likes(request):
-  return HttpResponse(like.objects.filter(id=1)[0].likeno)
+  return HttpResponse(len(like.objects.all()))
