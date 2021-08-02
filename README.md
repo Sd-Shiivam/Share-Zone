@@ -25,8 +25,9 @@
 - [4] Easy and quick upload.
 - [5] Multi file type support.
 - [6] Audio file player.
-- [7] image file viewer
-- [8] video file player
+- [7] image file viewer.
+- [8] video file player.
+- [9] Night mode pdf reader.
 
 
 
