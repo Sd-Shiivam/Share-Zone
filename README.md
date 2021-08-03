@@ -28,6 +28,7 @@
 - [7] image file viewer.
 - [8] video file player.
 - [9] Night mode pdf reader.
+- [10] File password protection.
 
 
 
