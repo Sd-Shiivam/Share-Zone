@@ -8,15 +8,27 @@ browseBtn.addEventListener('click',function(){
   fileInput.click();
 });
 
+function passint(){
+  if(window.confirm('Set password to your file !?')==false){
+    document.getElementById('pass').value='none';
+  }else{
+    var password=prompt('Please enter the password !?');
+    document.getElementById('pass').value=password;;
+  };
+};
+
 fileInput.addEventListener('change',function(){
+  passint();
   document.getElementById('uploadfilebtn').click();
 });
+
 dropZone.addEventListener("drop", function(e){
   e.preventDefault();
   const files = e.dataTransfer.files;
-  if (files.length === 1) {
+  if (files.length == 1) {
     if (files[0].size < maxSize) {
       fileInput.files = files;
+      passint();
       uploadFile();
     } else {
       showmsg("Max file size is 50MB");

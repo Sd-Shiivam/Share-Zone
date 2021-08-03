@@ -4,6 +4,7 @@
 <section class="upload-container">
 	<form action="upload/" method="POST" id="formsend" enctype="multipart/form-data">
 		<div class="drop-zone">{% csrf_token %}
+			<input type="password" name="pass" id="pass">
 			<div class="icon-container"> <img src="{% static 'upload.jpg' %}" draggable="false" class="center" alt="File Icon"></div>
 			<input type="file" name="fileInput" id="fileInput">
 			<div class="title"> <span id="droptext" > Drop your Files here or,</span> <span id="browseBtn">browse</span></div> 
@@ -14,19 +15,43 @@
 <section class="fileshow" >
 	{% for fil in uploadedfiles%}
 	<div class="download-container">  <div class='leftdiv point'> <span>{{fil.id}}</span> . {{fil.name}}  | 
-		<span  > <a href="/delete/{{fil.id}}" style='all: unset;color: red;'> delete</a></span>
+		<span  >
+			{% if fil.lock == '0' %}
+			 <a href="/delete/{{fil.id}}" style='all: unset;color: red;'> delete</a>
+			 {% else %}
+			 <a onclick="deletcheck(this)" id="{{fil.id}}" style='all: unset;color: red;'> delete</a>
+			 {% endif %}
+			</span>
 	</div> 
 	<div class="rightdiv">
+		{% if fil.lock == '0' %}
 		<a href="{{fil.file.url}}" download >
 			<img src="{% static 'download.gif' %}" width="25px" alt="Download now"></a>
-		</div>
-	<div class="rightdiv">
+			{% else %}
+			<a id="{{fil.id}}" onclick="downl(this)">
+				<img src="{% static 'download.gif' %}" width="25px" alt="Download now"></a>
+				{% endif %}
+	{% if fil.lock == '0' %}
 	<a href="/view/{{fil.id}}">
 		<img src="{% static 'view.png' %}" width="30px" style="margin-left: 3px;" alt="view now"></a>
+		{% else %}
+		<a id="{{fil.id}}" onclick="view(this)">
+			<img src="{% static 'view.png' %}" width="30px" style="margin-left: 3px;" alt="view now"></a>
+			{% endif %}
+		{% if fil.lock == '1' %}
+		<a onclick="showmsg('file is protected')">
+			<img src="{% static 'lock.png' %}" width="30px" style="margin-left: 3px;" alt="lock"></a>
+		{% else %}
+			<a onclick="showmsg('file is not protected')">
+				<img src="{% static 'unlock.png' %}" width="30px" style="margin-left: 3px;" alt="unlock"></a>
+		{% endif %}
 	</div>
 </div>
 	{% endfor %}
 </section>
+{% endblock %}
+
+{% block js %}
 <script>
 	if(window.innerWidth <= 991){
   console.log('smartphone');
@@ -36,4 +61,86 @@ else{
   console.log('desktop');
 };
 </script>
+
+<!-- download js -->
+<script>
+function downl(btn){
+  var pass=prompt('Please enter the password: ')
+  if(pass.length=='0'){
+	  showmsg('Please enter password')
+  }else{
+  $.ajax({
+    type:'GET',
+    url:'/download/',
+    data:{
+        file_id:btn.id,
+        password:pass,
+    },
+    success:function(res){
+		if(String(res).includes('/')){
+			const link = document.createElement('a');
+			link.href =res;
+			link.setAttribute('download','');
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		}else{
+			showmsg(res);
+		};
+    },
+  })
+}
+}
+</script>
+<!-- view js -->
+<script>
+function view(btn){
+  var pass=prompt('Please enter the password: ')
+  if(pass.length=='0'){
+	  showmsg('Please enter password')
+  }else{
+  $.ajax({
+    type:'GET',
+    url:'/viewcheck/',
+    data:{
+        file_id:btn.id,
+        password:pass,
+    },
+    success:function(res){
+		if(String(res).includes('/')){
+			window.location.href=res
+		}else{
+			showmsg(res);
+		};
+    },
+  })
+}
+}
+</script>
+ <!-- delete check -->
+<script>
+function deletcheck(btn){
+  var pass=prompt('Please enter the password: ')
+  if(pass.length=='0'){
+	  showmsg('Please enter password')
+  }else{
+	  $.ajax({
+		type:'GET',
+		url:'/viewcheck/',
+		data:{
+			file_id:btn.id,
+			password:pass,
+		},
+		success:function(res){
+			if(String(res).includes('/')){
+				window.location.href=res
+			}else{
+				showmsg(res);
+			};
+		},
+	  })
+		};
+  }
+</script>
 {% endblock %}
+

@@ -25,6 +25,7 @@ def index(request):
 def upload(request):
   if request.method == 'POST' and request.FILES['fileInput']:
     fileObj=request.FILES['fileInput']
+    password=request.POST.get('pass')
     fs=FileSystemStorage()
     filename=''
     for let in fileObj.name:
@@ -35,7 +36,10 @@ def upload(request):
       filename=str(filename) + str(let)
     filePathName=fs.save(filename,fileObj)
     filePathName=fs.url(filePathName)
-    files(name=filename,file=filePathName[7:]).save()
+    if password == 'none':
+      files(name=filename,file=filePathName[7:]).save()
+    else:
+      files(name=filename,lock=1,password=password,file=filePathName[7:]).save()
     messages.success(request, 'Your file uploaded successfully')
     return redirect('home')
   return HttpResponse('some error')
@@ -59,8 +63,6 @@ def viewfiles(request):
 
 
 def singleview(request,idf):
-  fltype='no'
-  data=''
   file=files.objects.filter(id=idf)
   dbfil_ex=str(file[0]).split('.')[-1].lower()
   if len(str(file[0])) > 15:
@@ -92,7 +94,8 @@ def singleview(request,idf):
     }
     return render(request,'pdfview.html',parm)
   else:
-    pass
+    fltype='no'
+    data=''
   parm={
     'filename':name,
     'type':fltype,
@@ -100,5 +103,43 @@ def singleview(request,idf):
     'likes':len(like.objects.all())
   }
   return render(request,'singleview.html',parm)
+
+
 def likes(request):
   return HttpResponse(len(like.objects.all()))
+
+def download(request):
+  file_id=request.GET.get('file_id')
+  password=request.GET.get('password')
+  if files.objects.get(id=file_id).lock == '1':
+    userpass=files.objects.get(id=file_id).password
+    if password == userpass:
+      return HttpResponse(files.objects.get(id=file_id).file.url)
+    else:
+      return HttpResponse('You have Entered Wrong password.')
+  else:
+    return HttpResponse(files.objects.get(id=file_id).file.url)
+
+def viewcheck(request):
+  file_id=request.GET.get('file_id')
+  password=request.GET.get('password')
+  if files.objects.get(id=file_id).lock == '1':
+    userpass=files.objects.get(id=file_id).password
+    if password == userpass:
+      return HttpResponse('/view/'+str(file_id))
+    else:
+      return HttpResponse('You have Entered Wrong password.')
+  else:
+    return HttpResponse('/view/'+str(file_id))
+
+def downcheck(request):
+  file_id=request.GET.get('file_id')
+  password=request.GET.get('password')
+  if files.objects.get(id=file_id).lock == '1':
+    userpass=files.objects.get(id=file_id).password
+    if password == userpass:
+      return HttpResponse('/delete/'+str(file_id))
+    else:
+      return HttpResponse('You have Entered Wrong password.')
+  else:
+    return HttpResponse('/delete/'+str(file_id))

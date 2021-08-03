@@ -24,6 +24,9 @@ urlpatterns = [
     path('upload/', upload,name='upload'),
     path('delete/<int:idf>', delet,name='delete'),
     path('view/<int:idf>', singleview,name='view'),
+    path('viewcheck/', viewcheck,name='viewcheck'),
+    path('downloadcheck/', downcheck,name='downcheck'),
+    path('download/', download,name='download'),
     path('uploadfiles/',viewfiles,name='viewall'),
     path('like/',likes,name='like')
 ]

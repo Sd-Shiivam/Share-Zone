@@ -5,7 +5,7 @@ class files(models.Model):
     id=models.AutoField(primary_key=True)
     upload_at = models.DateTimeField(default=datetime.now())
     lock=models.CharField(max_length=2,choices=(('0','0'),('1','1')),default='0') 
-    password=models.CharField(max_length=100,default='non')
+    password=models.CharField(max_length=100,default='none')
     name=models.CharField(max_length=1000)
     file=models.FileField(upload_to='')
     def __str__(self):
