@@ -132,7 +132,7 @@ def viewcheck(request):
   else:
     return HttpResponse('/view/'+str(file_id))
 
-def downcheck(request):
+def deletcheck(request):
   file_id=request.GET.get('file_id')
   password=request.GET.get('password')
   if files.objects.get(id=file_id).lock == '1':
