@@ -14,7 +14,7 @@
 </section>
 <section class="fileshow" >
 	{% for fil in uploadedfiles%}
-	<div class="download-container">  <div class='leftdiv point'> <span>{{fil.id}}</span> . {{fil.name}}  | 
+	<div class="download-container">  <div class='leftdiv point'> <span>{{forloop.counter}}</span> . {{fil.name}}  | 
 		<span  >
 			{% if fil.lock == '0' %}
 			 <a href="/delete/{{fil.id}}" style='all: unset;color: red;'> delete</a>
