@@ -2,7 +2,7 @@ from django.db import models
 from datetime import datetime 
 # Create your models here.
 class files(models.Model):
-    id=models.AutoField(primary_key=True)
+    file_id=models.CharField(max_length=1000,default='',unique=True)
     upload_at = models.DateTimeField(default=datetime.now())
     lock=models.CharField(max_length=2,choices=(('0','0'),('1','1')),default='0') 
     password=models.CharField(max_length=100,default='none')

@@ -2,20 +2,41 @@
 {% load static %}
 {% block body %}
 <section class="fileshow" style="display: block;" >
-    {% for fil in uploadedfiles%}
-    <div class="download-container">  <div class='leftdiv point'> <span id="filendetail"> <span>{{forloop.counter}}</span> . {{fil.name|slice:"0:15"}} | 
-      <span > <a href="/delete/{{fil.id}}"style='all: unset;color: red;'> delete</a></span></span>
-    </div> 
-    <div class="rightdiv"> <a href="{{fil.file.url}}" download >
-        <img src="{% static 'download.gif' %}" width="25px" alt="Download now"></a>
-
-      </div>
-    	<div class="rightdiv">
-        <a href="/view/{{fil.id}}">
-          <img src="{% static 'view.png' %}" width="30px" style="margin-left: 3px;" alt="view now"></a>
-        </div>
-    </div>
-    {% endfor %}
+	{% for fil in uploadedfiles%}
+	<div class="download-container">  <div class='leftdiv point'> <span>{{forloop.counter}}</span> . {{fil.name}}  | 
+		<span  >
+			{% if fil.lock == '0' %}
+			 <a href="/delete/{{fil.file_id}}" style='all: unset;color: red;'> delete</a>
+			 {% else %}
+			 <a onclick="deletcheck(this)" id="{{fil.file_id}}" style='all: unset;color: red;'> delete</a>
+			 {% endif %}
+			</span>
+	</div> 
+	<div class="rightdiv">
+		{% if fil.lock == '0' %}
+		<a href="{{fil.file.url}}" download >
+			<img src="{% static 'download.gif' %}" width="25px" alt="Download now"></a>
+			{% else %}
+			<a id="{{fil.file_id}}" onclick="downl(this)">
+				<img src="{% static 'download.gif' %}" width="25px" alt="Download now"></a>
+				{% endif %}
+	{% if fil.lock == '0' %}
+	<a href="/view/{{fil.file_id}}">
+		<img src="{% static 'view.png' %}" width="30px" style="margin-left: 3px;" alt="view now"></a>
+		{% else %}
+		<a id="{{fil.file_id}}" onclick="view(this)">
+			<img src="{% static 'view.png' %}" width="30px" style="margin-left: 3px;" alt="view now"></a>
+			{% endif %}
+		{% if fil.lock == '1' %}
+		<a onclick="showmsg('file is protected')">
+			<img src="{% static 'lock.png' %}" width="30px" style="margin-left: 3px;" alt="lock"></a>
+		{% else %}
+			<a onclick="showmsg('file is not protected')">
+				<img src="{% static 'unlock.png' %}" width="30px" style="margin-left: 3px;" alt="unlock"></a>
+		{% endif %}
+	</div>
+</div>
+	{% endfor %}
 </section>
 <script>
 	if(window.innerWidth <= 991){

@@ -2,6 +2,7 @@ from django import http
 from django.shortcuts import redirect, render
 from .models import *
 import os
+import random
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 from django.http import HttpResponse
@@ -11,6 +12,11 @@ textfiles=['txt','sh','text','py','html','css','scss','js','bash','xml','bat']
 images=['jpg','png','gif','ico','jpeg']
 audio=['mp3','wav','wma',]
 video=['mp4']
+
+def idgen():
+  id=str(random.randrange(0,100))+'s'+str(random.randrange(0,100))+'hr'+str(random.randrange(1000,10000))+'zo'+str(random.randrange(1000,10000))
+  return id
+
 # Create your views here.
 def index(request):
   if request.method == 'POST':
@@ -20,10 +26,22 @@ def index(request):
     else:
       like().save()
   s=reversed(files.objects.all())
-  return render(request,'home.html',{'uploadedfiles':s,'likes':len(like.objects.all())})
+  parm={
+    'uploadedfiles':s,
+    'likes':len(like.objects.all())
+  }
+  return render(request,'home.html',parm)
 
 def upload(request):
   if request.method == 'POST' and request.FILES['fileInput']:
+    ids=[]
+    for itm in files.objects.all():
+      ids.append(itm.file_id)
+    fl_id=idgen()
+    if fl_id in ids:
+      fl_id=idgen()
+    else:
+      pass
     fileObj=request.FILES['fileInput']
     password=request.POST.get('pass')
     fs=FileSystemStorage()
@@ -37,33 +55,37 @@ def upload(request):
     filePathName=fs.save(filename,fileObj)
     filePathName=fs.url(filePathName)
     if password == 'none':
-      files(name=filename,file=filePathName[7:]).save()
+      files(file_id=fl_id,name=filename,file=filePathName[7:]).save()
     else:
-      files(name=filename,lock=1,password=password,file=filePathName[7:]).save()
+      files(file_id=fl_id,name=filename,lock=1,password=password,file=filePathName[7:]).save()
     messages.success(request, 'Your file uploaded successfully')
     return redirect('home')
   return HttpResponse('some error')
 
 def delet(request,idf):
-  if files.objects.filter(id=idf)[0].name=='help.txt':
+  if files.objects.filter(file_id=idf)[0].name=='help.txt':
     messages.success(request, 'Soory can delete this file')
     return redirect('home')
   else:
     try:
-      os.remove(files.objects.get(id=idf).file.path)
+      os.remove(files.objects.get(file_id=idf).file.path)
     except:
       pass
-    files.objects.filter(id=idf).delete()
+    files.objects.filter(file_id=idf).delete()
     messages.success(request, 'Your file deleted successfully')
     return redirect('home')
 
 def viewfiles(request):
     s=reversed(files.objects.all())
-    return render(request,'viewfiels.html',{'uploadedfiles':s,'likes':len(like.objects.all())})
+    parm={
+      'uploadedfiles':s,
+      'likes':len(like.objects.all())
+    }
+    return render(request,'viewfiels.html',parm)
 
 
 def singleview(request,idf):
-  file=files.objects.filter(id=idf)
+  file=files.objects.filter(file_id=idf)
   dbfil_ex=str(file[0]).split('.')[-1].lower()
   if len(str(file[0])) > 15:
     name=str(file[0])[0:30]+'...'
@@ -71,21 +93,21 @@ def singleview(request,idf):
     name=file[0]
   if dbfil_ex in textfiles:
     fltype='txt'
-    data1=(files.objects.get(id=idf).file.path)
+    data1=(files.objects.get(file_id=idf).file.path)
     s=open(data1,'r')
     data=s.readlines()
   elif dbfil_ex in images:
     fltype='img'
-    data=(files.objects.filter(id=idf)[0].file.url)
+    data=(files.objects.filter(file_id=idf)[0].file.url)
   elif dbfil_ex in audio:
     fltype='music'
-    data=(files.objects.filter(id=idf)[0].file.url)
+    data=(files.objects.filter(file_id=idf)[0].file.url)
   elif dbfil_ex in video:
     fltype='video'
-    data=(files.objects.filter(id=idf)[0].file.url)
+    data=(files.objects.filter(file_id=idf)[0].file.url)
   elif dbfil_ex == 'pdf':
     fltype='pdf'
-    data=(files.objects.filter(id=idf)[0].file.url)
+    data=(files.objects.filter(file_id=idf)[0].file.url)
     parm={
     'filename':name,
     'type':fltype,
@@ -111,20 +133,20 @@ def likes(request):
 def download(request):
   file_id=request.GET.get('file_id')
   password=request.GET.get('password')
-  if files.objects.get(id=file_id).lock == '1':
-    userpass=files.objects.get(id=file_id).password
+  if files.objects.get(file_id=file_id).lock == '1':
+    userpass=files.objects.get(file_id=file_id).password
     if password == userpass:
-      return HttpResponse(files.objects.get(id=file_id).file.url)
+      return HttpResponse(files.objects.get(file_id=file_id).file.url)
     else:
       return HttpResponse('You have Entered Wrong password.')
   else:
-    return HttpResponse(files.objects.get(id=file_id).file.url)
+    return HttpResponse(files.objects.get(file_id=file_id).file.url)
 
 def viewcheck(request):
   file_id=request.GET.get('file_id')
   password=request.GET.get('password')
-  if files.objects.get(id=file_id).lock == '1':
-    userpass=files.objects.get(id=file_id).password
+  if files.objects.get(file_id=file_id).lock == '1':
+    userpass=files.objects.get(file_id=file_id).password
     if password == userpass:
       return HttpResponse('/view/'+str(file_id))
     else:
@@ -135,8 +157,8 @@ def viewcheck(request):
 def deletcheck(request):
   file_id=request.GET.get('file_id')
   password=request.GET.get('password')
-  if files.objects.get(id=file_id).lock == '1':
-    userpass=files.objects.get(id=file_id).password
+  if files.objects.get(file_id=file_id).lock == '1':
+    userpass=files.objects.get(file_id=file_id).password
     if password == userpass:
       return HttpResponse('/delete/'+str(file_id))
     else:

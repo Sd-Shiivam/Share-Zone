@@ -24,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '84gvxwpw6=te^ubkgc05%6&5i9@#6^xc)l4bk68l@era8k+**0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-# ALLOWED_HOSTS = ['shiva0001.pythonanywhere.com']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['shiva0001.pythonanywhere.com']
+# ALLOWED_HOSTS = []
 
 
 # Application definition

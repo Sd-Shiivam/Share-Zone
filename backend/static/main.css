@@ -160,7 +160,6 @@ body,
 }
 
 
-
 .msg {
     position: absolute;
     top: 15px;
@@ -322,6 +321,9 @@ body,
         height: 85%;
         display: flex;
         justify-content: center;
+    }
+    .download-container{
+        display: grid;
     }
     #flname{
     font-size: 11px;

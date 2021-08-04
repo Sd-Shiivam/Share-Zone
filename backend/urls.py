@@ -22,8 +22,8 @@ from .views import *
 urlpatterns = [
     path('', index,name='home'),
     path('upload/', upload,name='upload'),
-    path('delete/<int:idf>', delet,name='delete'),
-    path('view/<int:idf>', singleview,name='view'),
+    path('delete/<str:idf>', delet,name='delete'),
+    path('view/<str:idf>', singleview,name='view'),
     path('viewcheck/', viewcheck,name='viewcheck'),
     path('deletcheck/', deletcheck,name='deletcheck'),
     path('download/', download,name='download'),
