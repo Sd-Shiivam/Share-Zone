@@ -3,7 +3,7 @@
 {% block body %}
 <section class="fileshow" style="display: block;" >
 	{% for fil in uploadedfiles%}
-	<div class="download-container">  <div class='leftdiv point'> <span>{{forloop.counter}}</span> . {{fil.name}}  | 
+	<div class="download-container" style="display:grid" >  <div class='leftdiv point'> <span>{{forloop.counter}}</span> . {{fil.name}}  | 
 		<span  >
 			{% if fil.lock == '0' %}
 			 <a href="/delete/{{fil.file_id}}" style='all: unset;color: red;'> delete</a>
