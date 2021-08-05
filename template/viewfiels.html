@@ -8,7 +8,7 @@
 			{% if fil.lock == '0' %}
 			 <a href="/delete/{{fil.file_id}}" style='all: unset;color: red;'> delete</a>
 			 {% else %}
-			 <a onclick="deletcheck(this)" id="{{fil.file_id}}" style='all: unset;color: red;'> delete</a>
+			 <a onclick="deletcheck(this)" id="{{fil.id}}" style='all: unset;color: red;'> delete</a>
 			 {% endif %}
 			</span>
 	</div> 
@@ -17,14 +17,14 @@
 		<a href="{{fil.file.url}}" download >
 			<img src="{% static 'download.gif' %}" width="25px" alt="Download now"></a>
 			{% else %}
-			<a id="{{fil.file_id}}" onclick="downl(this)">
+			<a id="{{fil.id}}" onclick="downl(this)">
 				<img src="{% static 'download.gif' %}" width="25px" alt="Download now"></a>
 				{% endif %}
 	{% if fil.lock == '0' %}
 	<a href="/view/{{fil.file_id}}">
 		<img src="{% static 'view.png' %}" width="30px" style="margin-left: 3px;" alt="view now"></a>
 		{% else %}
-		<a id="{{fil.file_id}}" onclick="view(this)">
+		<a id="{{fil.id}}" onclick="view(this)">
 			<img src="{% static 'view.png' %}" width="30px" style="margin-left: 3px;" alt="view now"></a>
 			{% endif %}
 		{% if fil.lock == '1' %}

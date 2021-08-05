@@ -131,37 +131,37 @@ def likes(request):
   return HttpResponse(len(like.objects.all()))
 
 def download(request):
-  file_id=request.GET.get('file_id')
+  id=request.GET.get('file_id')
   password=request.GET.get('password')
-  if files.objects.get(file_id=file_id).lock == '1':
-    userpass=files.objects.get(file_id=file_id).password
+  if files.objects.get(id=id).lock == '1':
+    userpass=files.objects.get(id=id).password
     if password == userpass:
-      return HttpResponse(files.objects.get(file_id=file_id).file.url)
+      return HttpResponse(files.objects.get(id=id).file.url)
     else:
       return HttpResponse('You have Entered Wrong password.')
   else:
-    return HttpResponse(files.objects.get(file_id=file_id).file.url)
+    return HttpResponse(files.objects.get(id=id).file.url)
 
 def viewcheck(request):
-  file_id=request.GET.get('file_id')
+  id=request.GET.get('file_id')
   password=request.GET.get('password')
-  if files.objects.get(file_id=file_id).lock == '1':
-    userpass=files.objects.get(file_id=file_id).password
+  if files.objects.get(id=id).lock == '1':
+    userpass=files.objects.get(id=id).password
     if password == userpass:
-      return HttpResponse('/view/'+str(file_id))
+      return HttpResponse('/view/'+str(files.objects.get(id=id).file_id))
     else:
       return HttpResponse('You have Entered Wrong password.')
   else:
-    return HttpResponse('/view/'+str(file_id))
+    return HttpResponse('/view/'+str(files.objects.get(id=id).file_id))
 
 def deletcheck(request):
-  file_id=request.GET.get('file_id')
+  id=request.GET.get('file_id')
   password=request.GET.get('password')
-  if files.objects.get(file_id=file_id).lock == '1':
-    userpass=files.objects.get(file_id=file_id).password
+  if files.objects.get(id=id).lock == '1':
+    userpass=files.objects.get(id=id).password
     if password == userpass:
-      return HttpResponse('/delete/'+str(file_id))
+      return HttpResponse('/delete/'+str(files.objects.get(id=id).file_id))
     else:
       return HttpResponse('You have Entered Wrong password.')
   else:
-    return HttpResponse('/delete/'+str(file_id))
+    return HttpResponse('/delete/'+str(files.objects.get(id=id).file_id))
