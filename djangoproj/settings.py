@@ -28,8 +28,10 @@ with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['sharezone.pythonanywhere.com','www.sharezone.pythonanywhere.com']
-#ALLOWED_HOSTS = []
+if DEBUG == False:
+    ALLOWED_HOSTS = ['sharezone.pythonanywhere.com','www.sharezone.pythonanywhere.com']
+else:
+    ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -129,12 +131,14 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = BASE_DIR / 'static'
 
-# HTTPS settings
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
-
-# HSTS settings
-SECURE_HSTS_SECONDS = 31536000 # 1 year
-SECURE_HSTS_PRELOAD = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+if DEBUG == False:
+    # HTTPS settings
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+    # HSTS settings
+    SECURE_HSTS_SECONDS = 31536000 # 1 year
+    SECURE_HSTS_PRELOAD = True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+else:
+    pass
