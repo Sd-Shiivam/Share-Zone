@@ -85,11 +85,11 @@ def viewfiles(request):
 
 def singleview(request,idf):
   file=files.objects.filter(file_id=idf)
-  dbfil_ex=str(file[0]).split('.')[-1].lower()
-  if len(str(file[0])) > 15:
-    name=str(file[0])[0:30]+'...'
+  dbfil_ex=str(file[0].name).split('.')[-1].lower()
+  if len(str(file[0].name)) > 15:
+    name=str(file[0].name)[0:30]+'...'
   else:
-    name=file[0]
+    name=file[0].name
   if dbfil_ex in textfiles:
     fltype='txt'
     data1=(files.objects.get(file_id=idf).file.path)

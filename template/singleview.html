@@ -14,16 +14,12 @@
 		{% if type == 'txt' %}
 		<ol>{% for lin in data %}
 			<li>{{lin}}</li>{% endfor %}</ol>{% elif type == 'img' %}
-<<<<<<< HEAD
 		<img src="{{data}}"  alt="{{filename}}">{% elif type == 'music' %}
-=======
-		<img src="{{data}}" alt="{{filename}}">{% elif type == 'music' %}
->>>>>>> cbb485831946a6b196a5445eeed1cb9050be1de8
 		<span style="margin-top: 4%;color: deeppink;" id='detl'></span>
 		<audio src="{{data}}" id="audiomain" style="display: none;" controls></audio>
 		<a class="play-btn" onclick="play()" id='play1'></a>
 		<a onclick="pause()" class="play-btn" id='play2' style="display: none;"></a>
-		{% elif type == 'video' %} 
+		{% elif type == 'video' %}
 		<link type="text/css" href="{% static 'player.css' %}" rel="stylesheet" />
 		<!-- Video Player Container -->
 		<div class="playerContainer">
