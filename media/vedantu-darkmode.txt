@@ -1,0 +1,17 @@
+
+document.getElementsByClassName('class-metadata')[0].innerHTML +="<div id='darkbtn-cont' style='background: rgb(255 255 255); padding: 3px; border-radius: 8px;' onclick='dark()'> Normal </div>"
+function dark() {
+    var s = document.getElementById('student-canvas').style.filter
+    if (s == 'invert(1)') {
+        document.getElementById('darkbtn-cont').innerText='Dark-Mode'
+        document.getElementsByClassName('class-metadata')[0].style.filter='invert(0)'
+        document.getElementById('student-canvas').style.filter = 'invert(0)'
+        document.getElementsByClassName('activity')[0].style.filter='invert(0)'
+    } else {
+        document.getElementById('darkbtn-cont').innerText='Normal'
+        document.getElementsByClassName('class-metadata')[0].style.filter='invert(1)'
+        document.getElementsByClassName('activity')[0].style.filter='invert(1)'
+        document.getElementById('student-canvas').style.filter = 'invert(1)'
+    }
+}
+

@@ -1,5 +1,5 @@
-{% extends 'base.html' %} {% load static %} 
-{% block body %} 
+{% extends 'base.html' %} {% load static %}
+{% block body %}
 {% if type == 'txt' %}
 <style>
 	.databody{
@@ -13,7 +13,7 @@
 		{% if type == 'txt' %}
 		<ol>{% for lin in data %}
 			<li>{{lin}}</li>{% endfor %}</ol>{% elif type == 'img' %}
-		<img src="{{data}}" width="600px" height="400px" alt="{{filename}}">{% elif type == 'music' %}
+		<img src="{{data}}"  alt="{{filename}}">{% elif type == 'music' %}
 		<span style="margin-top: 4%;color: deeppink;" id='detl'></span>
 		<audio src="{{data}}" id="audiomain" style="display: none;" controls></audio>
 		<a class="play-btn" onclick="play()" id='play1'></a>
@@ -69,7 +69,7 @@
 			</div>
 			<div id="video-controls" style="width: fit-content;position: relative;">
 				<div class="progress"> <span class="current-time">00/00</span>
-					<input class="seek" id="seek" value="0" min="0" type="range" step="1"> <span class="total-time">00/00</span> 
+					<input class="seek" id="seek" value="0" min="0" type="range" step="1"> <span class="total-time">00/00</span>
 				</div>
 				<div class='controls-main'>
 					<div class='controls-left'>
