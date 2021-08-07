@@ -25,7 +25,7 @@ def index(request):
         like(name=name).save()
     else:
       like().save()
-  s=reversed(files.objects.all())
+  s=reversed(files.objects.filter(delete_file='Normal'))
   parm={
     'uploadedfiles':s,
     'likes':len(like.objects.all())
@@ -67,16 +67,15 @@ def delet(request,idf):
     messages.success(request, 'Soory can delete this file')
     return redirect('home')
   else:
-    try:
-      os.remove(files.objects.get(file_id=idf).file.path)
-    except:
-      pass
-    files.objects.filter(file_id=idf).delete()
-    messages.success(request, 'Your file deleted successfully')
-    return redirect('home')
+    pass
+  ids=files.objects.get(file_id=idf)
+  ids.delete_file='deleted'
+  ids.save()
+  messages.success(request, 'Your file deleted successfully')
+  return redirect('home')
 
 def viewfiles(request):
-    s=reversed(files.objects.all())
+    s=reversed(files.objects.filter(delete_file='Normal'))
     parm={
       'uploadedfiles':s,
       'likes':len(like.objects.all())
