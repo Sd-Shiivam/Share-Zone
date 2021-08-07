@@ -4,6 +4,7 @@
 <style>
 	.databody{
 		justify-content: left;
+		overflow: scroll;
 	}
 </style>
 {% endif %}
@@ -13,12 +14,12 @@
 		{% if type == 'txt' %}
 		<ol>{% for lin in data %}
 			<li>{{lin}}</li>{% endfor %}</ol>{% elif type == 'img' %}
-		<img src="{{data}}" width="600px" height="400px" alt="{{filename}}">{% elif type == 'music' %}
+		<img src="{{data}}" alt="{{filename}}">{% elif type == 'music' %}
 		<span style="margin-top: 4%;color: deeppink;" id='detl'></span>
 		<audio src="{{data}}" id="audiomain" style="display: none;" controls></audio>
 		<a class="play-btn" onclick="play()" id='play1'></a>
 		<a onclick="pause()" class="play-btn" id='play2' style="display: none;"></a>
-		{% elif type == 'video' %}
+		{% elif type == 'video' %} 
 		<link type="text/css" href="{% static 'player.css' %}" rel="stylesheet" />
 		<!-- Video Player Container -->
 		<div class="playerContainer">
