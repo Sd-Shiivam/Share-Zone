@@ -12,7 +12,7 @@
 
 > Github - https://github.com/Sd-Shivam/Share-Zone
 
-> Try Now - https://sharezone.pythonanywhere.com/
+> Try Now - https://sharezone001.pythonanywhere.com/
 
 
 
