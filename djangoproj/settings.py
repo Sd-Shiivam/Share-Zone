@@ -29,7 +29,7 @@ with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
 DEBUG = False
 
 if DEBUG == False:
-    ALLOWED_HOSTS = ['sharezone.pythonanywhere.com','www.sharezone.pythonanywhere.com']
+    ALLOWED_HOSTS = ['Sharezone001.pythonanywhere.comm','www.sharezone001.pythonanywhere.com']
 else:
     ALLOWED_HOSTS = []
 
