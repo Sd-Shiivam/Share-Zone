@@ -62,7 +62,16 @@ video player                 |  audio player
    Python manage.py runserver
    ```
    
+## <a name='how-to-contribute'>💥 How to Contribute?</a>
 
-## [😍] Contributing
-This project welcomes contributions. Join and make is more useful and better.
- 
+- Take a look at the Existing [Issues](https://github.com/Sd-Shiivam/Tools-db/issues) or create your Issues!
+- Create a Pull Request which will be promptly reviewed and suggestions would be added to improve it.
+- Having difficulty in contributing? Read the [Contribution Guide](https://github.com/Sd-Shiivam/Share-Zone/blob/main/CONTRIBUTING.md) for a detailed explanation.
+
+## <a name='contributors'>👥 Contributors</a>
+
+<a href="https://github.com/Sd-Shiivam/Share-Zone/graphs/contributors">
+    <p align="center" >
+        <img src="https://contrib.rocks/image?repo=Sd-Shiivam/Share-Zone" />
+    </p>
+</a>
